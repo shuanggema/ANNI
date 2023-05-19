@@ -5,10 +5,10 @@ If any questions, please contact the email: zhangshunqin19@mails.ucas.ac.cn
 # Requirement
 
 * Python 3.9.12
-* scipy 1.7.3
-* torch 2.0.0
-* numpy 1.21.5
-* argparse 1.1
+* Ccipy 1.7.3
+* Torch 2.0.0
+* Numpy 1.21.5
+* Argparse 1.1
 
 # Run
 
