@@ -5,7 +5,7 @@ If any questions, please contact the email: zhangshunqin19@mails.ucas.ac.cn
 # Requirement
 
 * Python 3.9.12
-* Ccipy 1.7.3
+* Scipy 1.7.3
 * Torch 2.0.0
 * Numpy 1.21.5
 * Argparse 1.1
