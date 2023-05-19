@@ -29,7 +29,7 @@ If any questions, please contact the email: zhangshunqin19@mails.ucas.ac.cn
 
 * 2.`python Rsample.py`
 
-* 2.`python Alltrain0.py`
+* 3.`python Alltrain0.py`
 
 
 ```
