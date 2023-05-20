@@ -22,11 +22,11 @@ def get_argparse():
     parser.add_argument("--lambda0", default=1, type=float, help="Penalty factor for alignment.")
     parser.add_argument("--lambda1", default=0.5, type=float, help="Penalty factor for group lasso")
     parser.add_argument("--lambda2", default=0.2, type=float, help="Penalty factor for L2 loss")
-    parser.add_argument("--num_epochs", default=16, type=int, help="Number of epochs in training.")
-    parser.add_argument("--num_epochs_test", default=32, type=int, help="Number of epochs in testing.")
+    parser.add_argument("--train_batchsize", default=16, type=int, help="Train batchsize.")
+    parser.add_argument("--test_batchsize", default=32, type=int, help="Test_batchsize.")
     parser.add_argument("--dvc", default='cuda:0', type=str, help="Current device")
     parser.add_argument("--tor", default=20, type=int, help="max tolerate")
-    parser.add_argument("--epochs_all", default=450, type=int, help="All of epochs")
+    parser.add_argument("--epochs_all", default=450, type=int, help="Number of epochs")
     parser.add_argument("--num_b", default=15, type=int, help="Number of main effects.")
     parser.add_argument("--l_r", default=0.001, type=float, help="Initial learning Rate")
     parser.add_argument("--delta", default=0.2, type=float, help="Relation Threshold")
@@ -308,8 +308,8 @@ args = get_argparse().parse_args()
 na = globals()
 ### Parameters###
 #args.n = 5
-#args.num_epochs = 16
-#args.num_epochs_test = 32
+#args.ttrain_batchsize = 16
+#args.test_batchsize = 32
 #args.dvc = 'cuda:0'
 #args.epochs_all = 400
 args.l_r = [args.l_r]*args.n
@@ -367,27 +367,26 @@ for i in range(args.n):
 for i in range(args.n):
     na[loader_name[i]] = DataLoader(
         dataset=na[dataset_name[i]],
-        batch_size=args.num_epochs,
+        batch_size=args.train_batchsize,
         shuffle=False,
         num_workers=0,
         pin_memory=True,
     )
     na[loader_name_test[i]] = DataLoader(
         dataset=na[dataset_name_test[i]],
-        batch_size=args.num_epochs_test,
+        batch_size=args.test_batchsize,
         shuffle=False,
         num_workers=0,
         pin_memory=True,
     )
     na[loader_name_val[i]] = DataLoader(
         dataset=na[dataset_name_val[i]],
-        batch_size=args.num_epochs_test,
+        batch_size=args.test_batchsize,
         shuffle=False,
         num_workers=0,
         pin_memory=True,
     )
 ### Network,Optimizer Initialization### 
-
 ind_all = [na[ind[i]] for i in range(args.n)]
 loader_train_all = [na[loader_name[i]] for i in range(args.n)]
 loader_test_all = [na[loader_name_test[i]] for i in range(args.n)]
